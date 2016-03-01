@@ -1,4 +1,5 @@
 # Hplc Formulation - Controller Requirements
+**Rev:** 1.0
 The requirements drive the [Hplc Formulation - Controller Architecture]
 (https://github.com/SofieBiosciences/HplcFormulation/issues/2)
 This document describes the firmware and hardware design requirements for the Hplc Formulation Embedded System (Controller).

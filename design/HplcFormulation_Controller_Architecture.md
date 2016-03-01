@@ -1,4 +1,5 @@
 # Hplc Formulation - Controller Architecture
+**Rev:** 1.0
 The architecture is based on the [Hplc Formulation - Controller Requirements](https://github.com/SofieBiosciences/HplcFormulation/issues/1)
 
 ## 1. System Architecture
@@ -12,20 +13,49 @@ The architecture of the embedded system board (Controller) including interfaces 
 
 ### 2.1. Suggested Interface Circuit Design
 
+
 #### SPI Bus Circuit
 The SPI bus will be shared by several interfaces (pressure reg, valve banks ... etc). The ARM chip controls which SPI devices are selected to communicate using the chip select (CS) line.
 
-![hplcform_spi_bus](https://cloud.githubusercontent.com/assets/7103392/13415283/63fef794-df0e-11e5-9788-20270a6733de.png)
+| SPI Bus Circuit  |
+| ------------- |
+| ![hplcform_spi_bus](https://cloud.githubusercontent.com/assets/7103392/13415283/63fef794-df0e-11e5-9788-20270a6733de.png) |
 
 #### Pressure Regulator Interface Circuit
+Pressure regulator interface will also use an SPI controlled analog output and input circuit.
 
-![hplcform_pressurereg_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13416410/242cf568-df17-11e5-98a8-4f044f48c14c.png)
+| Pressure Regulator Interface Circuit  |
+| ------------- |
+| ![hplcform_pressurereg_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13416410/242cf568-df17-11e5-98a8-4f044f48c14c.png) |
 
 #### Solenoid Valve and Pressure Valve Interface Circuit
-![hplcform_valveinterfacecircuit](https://cloud.githubusercontent.com/assets/7103392/13415103/e409864a-df0c-11e5-9643-109a96ca8178.png)
+The Solenoid valve bank will be controlled by an SPI enabled shift register.
+
+| Valve Interface Circuit  |
+| ------------- |
+| ![hplcform_valveinterfacecircuit](https://cloud.githubusercontent.com/assets/7103392/13415103/e409864a-df0c-11e5-9643-109a96ca8178.png) |
 
 #### Liquid Sensors Interface Circuit
-![hplcform_liquidsensor_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415162/7e1d00a4-df0d-11e5-800c-e67bf7ca575e.png)
+The liquid sensor interface circuit includes an SPI enabled ADC responsible for reading sensor values.
+
+| Liquid Sensor Interface Circuit  |
+| ------------- |
+| ![hplcform_liquidsensor_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415162/7e1d00a4-df0d-11e5-800c-e67bf7ca575e.png) |
+
+
+#### Radiation Sensors Interface Circuit
+The radiation sensor interface circuit includes an SPI enabled ADC responsible for reading sensor values.
+
+| Radiation Sensor Interface Circuit  |
+| ------------- |
+| ![hplcform_radsensor_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415222/ed153472-df0d-11e5-8009-9d28d3d3f1fb.png) |
+
+#### Video Input and Output Interface Circuit
+The video camera input requires an SMA jack for signal routing and a separate 12V connector to power the camera. The video camera output requires a D-Sub 15 connector 
+
+| Video Camera Output / Input Interface Circuit  |
+| ------------- |
+| ![hplcform_videointerface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415347/dd73cc26-df0e-11e5-8fb1-e9e129ab2946.png) |
 
 #### Radiation Detector Interface Circuit
 - Serial interface
@@ -34,13 +64,6 @@ The SPI bus will be shared by several interfaces (pressure reg, valve banks ... 
 #### UV Detector Interface Circuit
 - Serial interface
 - May include analog I/O
-
-#### Radiation Sensors Interface Circuit
-
-![hplcform_radsensor_interface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415222/ed153472-df0d-11e5-8009-9d28d3d3f1fb.png)
-
-#### Video Input and Output Interface Circuit
-![hplcform_videointerface_circuit](https://cloud.githubusercontent.com/assets/7103392/13415347/dd73cc26-df0e-11e5-8fb1-e9e129ab2946.png)
 
 #### Hplc Pump Interface Circuit
 - Comm Interface: RS232 Interface to ARM chip
